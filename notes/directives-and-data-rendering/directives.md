@@ -118,7 +118,12 @@ new Vue({
     <button type="submit" v-if="tacos">Let us know!</button>
 </div>
 ```
+* v-if -> full on mount & unmount
+* v-show -> just hides using CSS 
+* For hiding an element multiple times may be more performant to use `v-show` but if rendering a component once `v-if` could be better
 
+# `v-if` `v-else`
+* Works in very similar way to if /else, also else-if
 
 
 # v-bind or :
