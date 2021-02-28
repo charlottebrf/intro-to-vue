@@ -1,0 +1,18 @@
+<div id="app">
+    <div class="row">
+    <input v-model.number="num1" type="number" min="0">
+    <span>+</span>
+        <input v-model.number="num2" type="number" min="0">
+    <span>=</span>
+        <p> {{ num1 + num2 }} </p>
+    </div>
+    <div class="row second">
+    <select v-model="tacos" name="tacos" id="tacos">
+        <option value="Al Pastor">Al Pastor</option>
+        <option value="El Toro">El Toro</option>
+        <option value="G)wack-a-mole">G)wack-a-mole</option>
+        <option value="Tito El Chorizo Taquito">Tito "El Chorizo Taquito"</option>
+    </select>
+    <p v-if="tacos">My favorite kind of taco is {{ tacos }}</p>
+    </div>
+</div>
