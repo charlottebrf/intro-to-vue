@@ -154,5 +154,139 @@ new Vue({
         <p v-else>👎</p>
 </div>
 ```
-* 'yes' is a string
+* 'yes' is a string - it will show by
 
+## `v-bind` or `:`
+* V helpful class & style binding, creating dynamic props etc
+
+```
+<div id="app">
+    <h3> What is your favourite kind of taco?</h3>
+    <textarea v-model="tacos"></textarea>
+
+    <br>
+    <button> :class="[tacos ? activeClass : '']"> Let us know!
+    </button>
+</div>
+```
+* v-bind on the class -> ternary operator to choose something or not -> toggling styling using the `v-bind`
+* In Directives can use ternaries but not more complex functions
+
+## v-once & v-pre
+```
+<div id="app">
+    <h3>What is your favorite kind of taco?</h3>
+    <p><input v-model="tacos"/></p>
+    <p v-once="tacos">{{ tacos }}</p>
+    <span v-pre> This is good if I need to show the mustache view of {{ tacos }} </span>
+    **/ this pre is pretty printing the data/**
+    <pre> {{ $data }}</pre>
+</div>
+
+```
+
+
+```
+new Vue({
+    el: '#app',
+    data() {
+        return {
+            tacos: 'I like Al Pastor tacos'
+        }
+    }
+})
+```
+* `v-once` will not update once it's rendered - only update on first time you enter it to the DOM
+* `v-pre` will print out the inner text exactly how it is, including code (good for documentation)
+* When you see this `$` you know it's something available & special from the Vue instance
+* Could be useful for debugging -> can output what's going on with the data directly, similar to `JSON.stringify()`
+
+
+## v-on or @
+* Extremely useful so there's always a shortcut! 
+* `v-on` is great for binding to events like click & mouseenter. You're able to pass in a parameter for the event like (e)
+* Can also use ternaries directly
+* attach to the dom element using `@`
+
+
+```
+<div id="app">
+    <div class="quantity">
+    <button class="inc" @click="counter"> 0 ? counter -=1 : 0">
+    </button>
+    <button class="inc" @click="counter += 1">
+    </button>
+    <button class="submit" @click="">
+    Submit
+    </button>
+    </div>
+</div>
+
+```
+
+```
+new Vue({
+    el: '#app',
+    data() {
+        return { counter: 0 }
+    }
+});
+```
+* Can connect this to methods as well
+
+## Multiple bindings
+
+```
+<div v-on="
+    click : onClick,
+    keyup : onKeyup,
+    keydown : onKeydown
+">
+</div>
+```
+
+## Modifiers
+* `@mousemove.stop` -> comparable to `e.stopPropogation()`
+* `@mousmove.prevent` -> like `e.preventDefault()`
+* `@submit.prevent` -> will no longer reload the page on submission
+* `@click.once` -> not to be confused with `v.once` -> this click event will be triggered once
+* `@click.native` -> listen to native events in the DOM -> bit 
+* keycodes are available - can easily figure your own
+
+## v-html
+* great for strings that have html elements that need to be rendered
+
+```
+<div id="app">
+   <h3> What is your favourite kind of taco?</h3>
+   <p v-html="tacos"></p>
+</div>
+```
+
+```
+    new Vue({
+        el: '#app',
+        data() {
+            return {
+                tacos: `I like <a href="some-website" target="_blank" Al Pastor<a/> tacos`
+            }
+        }
+    })
+```
+* Want to output the url with the string attached
+* Parse all of the tags
+* Don't use this for user generated content - it's a security issue for XSS
+
+## v-text
+* Similar to using mustache templates
+
+```
+<div id="app">
+   <h3> What is your favourite kind of taco?</h3>
+   <p v-text="tacos"></p>
+   <p> {{ tacos }} </p>
+   <p><input v-model="tacos"/></p>
+</div>
+```
+* Same as a mustache template basically
+* Recommended to use mustache
