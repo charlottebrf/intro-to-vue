@@ -68,3 +68,5 @@ export default {
 
 <app-new></app-new>
 ```
+
+https://github.com/sdras/intro-to-vue/tree/main/setup1
