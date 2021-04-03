@@ -1,6 +1,6 @@
 <template>
   <div class="location-contain">
-    <div v-for="location in locations" :key="location">
+    <div v-for="location in locations" :key="location.name">
       <destination :img="location.img" :desc="location.desc" :name="location.name"></destination>
    </div>
   </div>
@@ -33,10 +33,11 @@ data() {
           img: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/28963/paris2.svg',
           desc: `By the end of the 12th century, Paris had become the political, economic, religious, and cultural capital of France. Maurice de Sully undertook the construction of the Notre Dame Cathedral at its eastern extremity.`
         },
-      ]
+      ],
     }
-  }
+  },
 };
+
 </script>
 
 <style scoped>
